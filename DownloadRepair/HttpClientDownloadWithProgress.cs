@@ -14,6 +14,7 @@ namespace DownloadRepair
 
         public event ProgressChangedHandler? ProgressChanged;
 
+
         public HttpClientDownloadWithProgress(string downloadUrl, string destinationFilePath)
         {
             _downloadUrl = downloadUrl;
