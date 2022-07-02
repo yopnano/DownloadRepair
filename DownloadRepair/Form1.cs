@@ -31,6 +31,7 @@ namespace DownloadRepair
         {
             if (txtUrl.Text != "" && txtFile.Text != "")
             {
+                progressBar1.Value = 0;
                 progressBar1.Visible = true;
                 progressBar1.Maximum = 65000;
 
