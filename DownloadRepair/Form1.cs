@@ -54,5 +54,10 @@ namespace DownloadRepair
                 }
             }
         }
+
+        private void BPaste_Click(object sender, EventArgs e)
+        {
+            txtUrl.Text = Clipboard.GetText();
+        }
     }
 }

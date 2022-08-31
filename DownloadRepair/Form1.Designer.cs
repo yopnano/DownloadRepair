@@ -36,6 +36,7 @@
             this.txtFile = new System.Windows.Forms.TextBox();
             this.bStart = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.bPaste = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,11 +72,12 @@
             // 
             this.txtUrl.Location = new System.Drawing.Point(52, 3);
             this.txtUrl.Name = "txtUrl";
-            this.txtUrl.Size = new System.Drawing.Size(865, 23);
+            this.txtUrl.Size = new System.Drawing.Size(789, 23);
             this.txtUrl.TabIndex = 3;
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.bPaste);
             this.panel1.Controls.Add(this.txtFile);
             this.panel1.Controls.Add(this.bBrowse);
             this.panel1.Controls.Add(this.lblFile);
@@ -111,6 +113,16 @@
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
+            // bPaste
+            // 
+            this.bPaste.Location = new System.Drawing.Point(847, 3);
+            this.bPaste.Name = "bPaste";
+            this.bPaste.Size = new System.Drawing.Size(70, 23);
+            this.bPaste.TabIndex = 5;
+            this.bPaste.Text = "Coller";
+            this.bPaste.UseVisualStyleBackColor = true;
+            this.bPaste.Click += new System.EventHandler(this.BPaste_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -142,5 +154,6 @@
         private TextBox txtFile;
         private Button bStart;
         private ProgressBar progressBar1;
+        private Button bPaste;
     }
 }
