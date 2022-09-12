@@ -33,10 +33,11 @@
             this.bBrowse = new System.Windows.Forms.Button();
             this.txtUrl = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.bPaste = new System.Windows.Forms.Button();
             this.txtFile = new System.Windows.Forms.TextBox();
             this.bStart = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.bPaste = new System.Windows.Forms.Button();
+            this.ChkProgressType = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +89,16 @@
             this.panel1.Size = new System.Drawing.Size(920, 60);
             this.panel1.TabIndex = 4;
             // 
+            // bPaste
+            // 
+            this.bPaste.Location = new System.Drawing.Point(847, 3);
+            this.bPaste.Name = "bPaste";
+            this.bPaste.Size = new System.Drawing.Size(70, 23);
+            this.bPaste.TabIndex = 5;
+            this.bPaste.Text = "Coller";
+            this.bPaste.UseVisualStyleBackColor = true;
+            this.bPaste.Click += new System.EventHandler(this.BPaste_Click);
+            // 
             // txtFile
             // 
             this.txtFile.Location = new System.Drawing.Point(52, 32);
@@ -113,15 +124,17 @@
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
-            // bPaste
+            // ChkProgressType
             // 
-            this.bPaste.Location = new System.Drawing.Point(847, 3);
-            this.bPaste.Name = "bPaste";
-            this.bPaste.Size = new System.Drawing.Size(70, 23);
-            this.bPaste.TabIndex = 5;
-            this.bPaste.Text = "Coller";
-            this.bPaste.UseVisualStyleBackColor = true;
-            this.bPaste.Click += new System.EventHandler(this.BPaste_Click);
+            this.ChkProgressType.AutoSize = true;
+            this.ChkProgressType.Checked = true;
+            this.ChkProgressType.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ChkProgressType.Location = new System.Drawing.Point(15, 73);
+            this.ChkProgressType.Name = "ChkProgressType";
+            this.ChkProgressType.Size = new System.Drawing.Size(132, 19);
+            this.ChkProgressType.TabIndex = 7;
+            this.ChkProgressType.Text = "Progression absolue";
+            this.ChkProgressType.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -129,6 +142,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(944, 129);
+            this.Controls.Add(this.ChkProgressType);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.bStart);
             this.Controls.Add(this.panel1);
@@ -141,6 +155,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -155,5 +170,6 @@
         private Button bStart;
         private ProgressBar progressBar1;
         private Button bPaste;
+        private CheckBox ChkProgressType;
     }
 }

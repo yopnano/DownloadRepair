@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System;
+using System.ComponentModel;
 
 namespace DownloadRepair
 {
@@ -7,6 +8,8 @@ namespace DownloadRepair
     {
         private readonly string _downloadUrl;
         private readonly string _destinationFilePath;
+        private long _fileSize;
+        private long _progressType;
 
         private HttpClient? _httpClient;
 
@@ -19,6 +22,8 @@ namespace DownloadRepair
         {
             _downloadUrl = downloadUrl;
             _destinationFilePath = destinationFilePath;
+            _fileSize = 0;
+            _progressType = 0;
         }
 
         public async Task StartAppendFile()
@@ -28,10 +33,10 @@ namespace DownloadRepair
 
             using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
 
-            long fileSize = GetFileLenght();
+            _fileSize = GetFileLenght();
             long end = GetContentLenght(response);
 
-            _httpClient.DefaultRequestHeaders.Range = new RangeHeaderValue(fileSize, end);
+            _httpClient.DefaultRequestHeaders.Range = new RangeHeaderValue(_fileSize, end);
 
             using var data = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
             await DownloadFileFromHttpResponseMessage(data);
@@ -44,6 +49,11 @@ namespace DownloadRepair
 
             using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
             await DownloadFileFromHttpResponseMessage(response);
+        }
+
+        public void ProgressTypeAbsolute(bool type)
+        {
+            _progressType = type ? _fileSize : 0;
         }
 
         private async Task DownloadFileFromHttpResponseMessage(HttpResponseMessage response)
@@ -112,7 +122,7 @@ namespace DownloadRepair
 
             double? progressPercentage = null;
             if (totalDownloadSize.HasValue)
-                progressPercentage = Math.Round((double)totalBytesRead / totalDownloadSize.Value * 100, 2);
+                progressPercentage = Math.Round( (double) (_progressType + totalBytesRead) / (_progressType + totalDownloadSize.Value) * 100, 2 );
 
             ProgressChanged(totalDownloadSize, totalBytesRead, progressPercentage);
         }

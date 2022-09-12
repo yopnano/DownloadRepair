@@ -16,7 +16,7 @@ namespace DownloadRepair
         {
             InitializeComponent();
         }
-
+        
         private void BBrowse_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new();
@@ -37,9 +37,12 @@ namespace DownloadRepair
 
                 try
                 {
-                    using var client = new HttpClientDownloadWithProgress(txtUrl.Text, txtFile.Text);
+                        using var client = new HttpClientDownloadWithProgress(txtUrl.Text, txtFile.Text);
+
                         client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                         {
+                            client.ProgressTypeAbsolute(ChkProgressType.Checked);
+                            
                             //Console.WriteLine($"{progressPercentage}% ({totalBytesDownloaded}/{totalFileSize})");
                             progressBar1.Value = progressPercentage != null ? (int)(progressPercentage * 650) : 0;
                         };
