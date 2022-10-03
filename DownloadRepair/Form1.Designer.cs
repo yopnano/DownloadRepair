@@ -38,6 +38,7 @@
             this.bStart = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ChkProgressType = new System.Windows.Forms.CheckBox();
+            this.bOpen = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +106,7 @@
             this.txtFile.Name = "txtFile";
             this.txtFile.Size = new System.Drawing.Size(789, 23);
             this.txtFile.TabIndex = 4;
+            this.txtFile.TextChanged += new System.EventHandler(this.txtFile_TextChanged);
             // 
             // bStart
             // 
@@ -136,12 +138,24 @@
             this.ChkProgressType.Text = "Progression absolue";
             this.ChkProgressType.UseVisualStyleBackColor = true;
             // 
+            // bOpen
+            // 
+            this.bOpen.Location = new System.Drawing.Point(859, 70);
+            this.bOpen.Name = "bOpen";
+            this.bOpen.Size = new System.Drawing.Size(70, 22);
+            this.bOpen.TabIndex = 6;
+            this.bOpen.Text = "Ouvrir";
+            this.bOpen.UseVisualStyleBackColor = true;
+            this.bOpen.Visible = false;
+            this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(944, 129);
+            this.Controls.Add(this.bOpen);
             this.Controls.Add(this.ChkProgressType);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.bStart);
@@ -171,5 +185,6 @@
         private ProgressBar progressBar1;
         private Button bPaste;
         private CheckBox ChkProgressType;
+        private Button bOpen;
     }
 }

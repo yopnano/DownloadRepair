@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -61,6 +62,21 @@ namespace DownloadRepair
         private void BPaste_Click(object sender, EventArgs e)
         {
             txtUrl.Text = Clipboard.GetText();
+        }
+
+        private void txtFile_TextChanged(object sender, EventArgs e)
+        {
+            bOpen.Visible = txtFile.Text != "";
+        }
+
+        private void bOpen_Click(object sender, EventArgs e)
+        {
+            var p = new Process();
+            p.StartInfo = new ProcessStartInfo(txtFile.Text)
+            {
+                UseShellExecute = true
+            };
+            p.Start();
         }
     }
 }
