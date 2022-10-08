@@ -39,6 +39,11 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.ChkProgressType = new System.Windows.Forms.CheckBox();
             this.bOpen = new System.Windows.Forms.Button();
+            this.lTxtSpeed = new System.Windows.Forms.Label();
+            this.lSpeed = new System.Windows.Forms.Label();
+            this.lETime = new System.Windows.Forms.Label();
+            this.lTxtETime = new System.Windows.Forms.Label();
+            this.bStop = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -106,7 +111,7 @@
             this.txtFile.Name = "txtFile";
             this.txtFile.Size = new System.Drawing.Size(789, 23);
             this.txtFile.TabIndex = 4;
-            this.txtFile.TextChanged += new System.EventHandler(this.txtFile_TextChanged);
+            this.txtFile.TextChanged += new System.EventHandler(this.TxtFile_TextChanged);
             // 
             // bStart
             // 
@@ -147,7 +152,58 @@
             this.bOpen.Text = "Ouvrir";
             this.bOpen.UseVisualStyleBackColor = true;
             this.bOpen.Visible = false;
-            this.bOpen.Click += new System.EventHandler(this.bOpen_Click);
+            this.bOpen.Click += new System.EventHandler(this.BOpen_Click);
+            // 
+            // lTxtSpeed
+            // 
+            this.lTxtSpeed.AutoSize = true;
+            this.lTxtSpeed.Location = new System.Drawing.Point(167, 75);
+            this.lTxtSpeed.Name = "lTxtSpeed";
+            this.lTxtSpeed.Size = new System.Drawing.Size(49, 15);
+            this.lTxtSpeed.TabIndex = 8;
+            this.lTxtSpeed.Text = "Vitesse :";
+            this.lTxtSpeed.Visible = false;
+            // 
+            // lSpeed
+            // 
+            this.lSpeed.AutoSize = true;
+            this.lSpeed.Location = new System.Drawing.Point(215, 75);
+            this.lSpeed.Name = "lSpeed";
+            this.lSpeed.Size = new System.Drawing.Size(35, 15);
+            this.lSpeed.TabIndex = 9;
+            this.lSpeed.Text = "Mo/s";
+            this.lSpeed.Visible = false;
+            // 
+            // lETime
+            // 
+            this.lETime.AutoSize = true;
+            this.lETime.Location = new System.Drawing.Point(386, 76);
+            this.lETime.Name = "lETime";
+            this.lETime.Size = new System.Drawing.Size(59, 15);
+            this.lETime.TabIndex = 11;
+            this.lETime.Text = "hh mm ss";
+            this.lETime.Visible = false;
+            // 
+            // lTxtETime
+            // 
+            this.lTxtETime.AutoSize = true;
+            this.lTxtETime.Location = new System.Drawing.Point(299, 76);
+            this.lTxtETime.Name = "lTxtETime";
+            this.lTxtETime.Size = new System.Drawing.Size(88, 15);
+            this.lTxtETime.TabIndex = 10;
+            this.lTxtETime.Text = "Durée estimée :";
+            this.lTxtETime.Visible = false;
+            // 
+            // bStop
+            // 
+            this.bStop.Location = new System.Drawing.Point(859, 95);
+            this.bStop.Name = "bStop";
+            this.bStop.Size = new System.Drawing.Size(70, 23);
+            this.bStop.TabIndex = 12;
+            this.bStop.Text = "Arreter";
+            this.bStop.UseVisualStyleBackColor = true;
+            this.bStop.Visible = false;
+            this.bStop.Click += new System.EventHandler(this.BStop_Click);
             // 
             // Form1
             // 
@@ -155,6 +211,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(944, 129);
+            this.Controls.Add(this.bStop);
+            this.Controls.Add(this.lETime);
+            this.Controls.Add(this.lTxtETime);
+            this.Controls.Add(this.lSpeed);
+            this.Controls.Add(this.lTxtSpeed);
             this.Controls.Add(this.bOpen);
             this.Controls.Add(this.ChkProgressType);
             this.Controls.Add(this.progressBar1);
@@ -186,5 +247,11 @@
         private Button bPaste;
         private CheckBox ChkProgressType;
         private Button bOpen;
+        private Label lTxtSpeed;
+        private Label lSpeed;
+        private Label lETime;
+        private Label lTxtETime;
+        private Button bStop;
+        private HttpClientDownloadWithProgress client = new HttpClientDownloadWithProgress();
     }
 }

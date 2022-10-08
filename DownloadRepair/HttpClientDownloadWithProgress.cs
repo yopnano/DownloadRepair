@@ -6,8 +6,8 @@ namespace DownloadRepair
 {
     public class HttpClientDownloadWithProgress : IDisposable
     {
-        private readonly string _downloadUrl;
-        private readonly string _destinationFilePath;
+        private string _downloadUrl;
+        private string _destinationFilePath;
         private long _fileSize;
         private long _progressType;
 
@@ -24,6 +24,20 @@ namespace DownloadRepair
             _destinationFilePath = destinationFilePath;
             _fileSize = 0;
             _progressType = 0;
+        }
+
+        public HttpClientDownloadWithProgress()
+        {
+            _downloadUrl = "";
+            _destinationFilePath = "";
+            _fileSize = 0;
+            _progressType = 0;
+        }
+
+        public void Init(string downloadUrl, string destinationFilePath)
+        {
+            _downloadUrl = downloadUrl;
+            _destinationFilePath = destinationFilePath;
         }
 
         public async Task StartAppendFile()
@@ -49,6 +63,12 @@ namespace DownloadRepair
 
             using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
             await DownloadFileFromHttpResponseMessage(response);
+        }
+
+        public void Cancel()
+        {
+            if (_httpClient != null)
+                _httpClient.CancelPendingRequests();
         }
 
         public void ProgressTypeAbsolute(bool type)
