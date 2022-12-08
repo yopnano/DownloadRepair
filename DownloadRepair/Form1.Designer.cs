@@ -37,7 +37,6 @@
             this.txtFile = new System.Windows.Forms.TextBox();
             this.bStart = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.ChkProgressType = new System.Windows.Forms.CheckBox();
             this.bOpen = new System.Windows.Forms.Button();
             this.lTxtSpeed = new System.Windows.Forms.Label();
             this.lSpeed = new System.Windows.Forms.Label();
@@ -131,18 +130,6 @@
             this.progressBar1.TabIndex = 6;
             this.progressBar1.Visible = false;
             // 
-            // ChkProgressType
-            // 
-            this.ChkProgressType.AutoSize = true;
-            this.ChkProgressType.Checked = true;
-            this.ChkProgressType.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChkProgressType.Location = new System.Drawing.Point(15, 73);
-            this.ChkProgressType.Name = "ChkProgressType";
-            this.ChkProgressType.Size = new System.Drawing.Size(132, 19);
-            this.ChkProgressType.TabIndex = 7;
-            this.ChkProgressType.Text = "Progression absolue";
-            this.ChkProgressType.UseVisualStyleBackColor = true;
-            // 
             // bOpen
             // 
             this.bOpen.Location = new System.Drawing.Point(859, 70);
@@ -157,7 +144,7 @@
             // lTxtSpeed
             // 
             this.lTxtSpeed.AutoSize = true;
-            this.lTxtSpeed.Location = new System.Drawing.Point(167, 75);
+            this.lTxtSpeed.Location = new System.Drawing.Point(15, 75);
             this.lTxtSpeed.Name = "lTxtSpeed";
             this.lTxtSpeed.Size = new System.Drawing.Size(49, 15);
             this.lTxtSpeed.TabIndex = 8;
@@ -167,7 +154,7 @@
             // lSpeed
             // 
             this.lSpeed.AutoSize = true;
-            this.lSpeed.Location = new System.Drawing.Point(215, 75);
+            this.lSpeed.Location = new System.Drawing.Point(63, 75);
             this.lSpeed.Name = "lSpeed";
             this.lSpeed.Size = new System.Drawing.Size(35, 15);
             this.lSpeed.TabIndex = 9;
@@ -177,7 +164,7 @@
             // lETime
             // 
             this.lETime.AutoSize = true;
-            this.lETime.Location = new System.Drawing.Point(386, 76);
+            this.lETime.Location = new System.Drawing.Point(234, 76);
             this.lETime.Name = "lETime";
             this.lETime.Size = new System.Drawing.Size(59, 15);
             this.lETime.TabIndex = 11;
@@ -187,7 +174,7 @@
             // lTxtETime
             // 
             this.lTxtETime.AutoSize = true;
-            this.lTxtETime.Location = new System.Drawing.Point(299, 76);
+            this.lTxtETime.Location = new System.Drawing.Point(147, 76);
             this.lTxtETime.Name = "lTxtETime";
             this.lTxtETime.Size = new System.Drawing.Size(88, 15);
             this.lTxtETime.TabIndex = 10;
@@ -217,7 +204,6 @@
             this.Controls.Add(this.lSpeed);
             this.Controls.Add(this.lTxtSpeed);
             this.Controls.Add(this.bOpen);
-            this.Controls.Add(this.ChkProgressType);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.bStart);
             this.Controls.Add(this.panel1);
@@ -245,13 +231,12 @@
         private Button bStart;
         private ProgressBar progressBar1;
         private Button bPaste;
-        private CheckBox ChkProgressType;
         private Button bOpen;
         private Label lTxtSpeed;
         private Label lSpeed;
         private Label lETime;
         private Label lTxtETime;
         private Button bStop;
-        private HttpClientDownloadWithProgress client = new HttpClientDownloadWithProgress();
+        private FileDownload fd = new FileDownload("vide", "vide");
     }
 }

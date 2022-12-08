@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System;
 using System.ComponentModel;
+using Microsoft.VisualBasic;
 
 namespace DownloadRepair
 {
@@ -10,8 +11,10 @@ namespace DownloadRepair
         private string _destinationFilePath;
         private long _fileSize;
         private long _progressType;
+        private bool _allowedToRun;
 
         private HttpClient? _httpClient;
+        private CancellationTokenSource _cts = new();
 
         public delegate void ProgressChangedHandler(long? totalFileSize, long totalBytesDownloaded, double? progressPercentage);
 
@@ -39,21 +42,35 @@ namespace DownloadRepair
             _downloadUrl = downloadUrl;
             _destinationFilePath = destinationFilePath;
         }
+        public bool UrlValiator(string url)
+        {
+            Uri validatedUrl;
+            return Uri.TryCreate(url, UriKind.Absolute, out validatedUrl);
+        }
 
         public async Task StartAppendFile()
         {
             _httpClient = new HttpClient { Timeout = TimeSpan.FromDays(1) };
+                        
+            if (UrlValiator(_downloadUrl))
+            {
+                using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
 
+                _fileSize = GetFileLenght();
+                long end = GetContentLenght(response);
 
-            using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+                if (end > 0)
+                {
+                    _httpClient.DefaultRequestHeaders.Range = new RangeHeaderValue(_fileSize, end);
 
-            _fileSize = GetFileLenght();
-            long end = GetContentLenght(response);
-
-            _httpClient.DefaultRequestHeaders.Range = new RangeHeaderValue(_fileSize, end);
-
-            using var data = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
-            await DownloadFileFromHttpResponseMessage(data);
+                    using var data = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+                    await DownloadFileFromHttpResponseMessage(data);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez saisir une url valide", "Url invalide", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }        
         }
 
 
@@ -61,14 +78,14 @@ namespace DownloadRepair
         {
             _httpClient = new HttpClient { Timeout = TimeSpan.FromDays(1) };
 
-            using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead);
+            using var response = await _httpClient.GetAsync(_downloadUrl, HttpCompletionOption.ResponseHeadersRead, _cts.Token);
             await DownloadFileFromHttpResponseMessage(response);
         }
 
         public void Cancel()
         {
-            if (_httpClient != null)
-                _httpClient.CancelPendingRequests();
+            _cts.Cancel();
+            _cts = new CancellationTokenSource();
         }
 
         public void ProgressTypeAbsolute(bool type)
@@ -88,10 +105,13 @@ namespace DownloadRepair
 
         private static long GetContentLenght(HttpResponseMessage response)
         {
-            response.EnsureSuccessStatusCode();
-            if (response.Content.Headers.ContentLength > 0)
+            if (response.IsSuccessStatusCode)
             {
                 return (long)response.Content.Headers.ContentLength;
+            }
+            else
+            {
+                MessageBox.Show("Url invalide ou accès restreint", "Erreur d'acces au fichier", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return 0;
         }

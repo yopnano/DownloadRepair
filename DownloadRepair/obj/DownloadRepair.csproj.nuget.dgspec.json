@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "\\\\UNRAIDLMB\\Data\\mes documents\\Developpement\\C#\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj": {}
+    "C:\\Users\\yann\\Desktop\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj": {}
   },
   "projects": {
-    "\\\\UNRAIDLMB\\Data\\mes documents\\Developpement\\C#\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj": {
+    "C:\\Users\\yann\\Desktop\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "\\\\UNRAIDLMB\\Data\\mes documents\\Developpement\\C#\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj",
+        "projectUniqueName": "C:\\Users\\yann\\Desktop\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj",
         "projectName": "DownloadRepair",
-        "projectPath": "\\\\UNRAIDLMB\\Data\\mes documents\\Developpement\\C#\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj",
+        "projectPath": "C:\\Users\\yann\\Desktop\\DownloadRepair\\DownloadRepair\\DownloadRepair.csproj",
         "packagesPath": "C:\\Users\\yann\\.nuget\\packages\\",
-        "outputPath": "\\\\UNRAIDLMB\\Data\\mes documents\\Developpement\\C#\\DownloadRepair\\DownloadRepair\\obj\\",
+        "outputPath": "C:\\Users\\yann\\Desktop\\DownloadRepair\\DownloadRepair\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yann\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -58,7 +58,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
