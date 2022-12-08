@@ -123,13 +123,13 @@ namespace DownloadRepair
             double speedMO = Math.Round(fd.DownloadSpeed / 1000000, 2); // Mo/s
             TimeSpan ts = fd.RemainingTime;
 
-            String format = @"hh\:mm\:ss";
+            String format = @"hh\ \h\ mm\ \m\i\n\ ss\ \s\e\c";
 
             if (ts.TotalSeconds < 3600 && ts.TotalSeconds >= 60)
-                format = @"mm\:ss";
+                format = @"mm\ \m\i\n\ ss\ \s\e\c";
 
             else if (ts.TotalSeconds < 60)
-                format = @"ss";
+                format = @"ss\ \s\e\c";
 
             String strTime = ts.ToString(format);            
 
